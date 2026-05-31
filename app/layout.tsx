@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Poorani M | Portfolio',
+  description: 'Personal portfolio showcasing my projects, skills, and achievements',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -35,9 +36,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-background scroll-smooth">
       <body className="font-sans antialiased">
         {children}
+        <Toaster richColors position="top-right" />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

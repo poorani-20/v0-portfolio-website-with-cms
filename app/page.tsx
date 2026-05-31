@@ -1,37 +1,61 @@
-export default function Page() {
-  return (
-    <main className="flex min-h-screen items-center justify-center bg-black px-6 text-neutral-400">
-      <div className="flex w-full max-w-md flex-col items-start gap-8">
-        <svg
-          fill="currentColor"
-          viewBox="0 0 147 70"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          className="size-10 text-white"
-        >
-          <path d="M56 50.2031V14H70V60.1562C70 65.5928 65.5928 70 60.1562 70C57.5605 70 54.9982 68.9992 53.1562 67.1573L0 14H19.7969L56 50.2031Z" />
-          <path d="M147 56H133V23.9531L100.953 56H133V70H96.6875C85.8144 70 77 61.1856 77 50.3125V14H91V46.1562L123.156 14H91V0H127.312C138.186 0 147 8.81439 147 19.6875V56Z" />
-        </svg>
+import { createClient } from "@/lib/supabase/server"
+import type { Project, Certificate, GalleryImage, Skill, Education, Achievement, Workshop, Contact, Resume } from "@/lib/types/database"
+import { HeroSection } from "@/components/portfolio/hero-section"
+import { AboutSection } from "@/components/portfolio/about-section"
+import { ProjectsSection } from "@/components/portfolio/projects-section"
+import { SkillsSection } from "@/components/portfolio/skills-section"
+import { EducationSection } from "@/components/portfolio/education-section"
+import { CertificatesSection } from "@/components/portfolio/certificates-section"
+import { AchievementsSection } from "@/components/portfolio/achievements-section"
+import { WorkshopsSection } from "@/components/portfolio/workshops-section"
+import { GallerySection } from "@/components/portfolio/gallery-section"
+import { ContactSection } from "@/components/portfolio/contact-section"
+import { Navbar } from "@/components/portfolio/navbar"
+import { Footer } from "@/components/portfolio/footer"
 
-        <div className="space-y-3">
-          <h1 className="text-balance text-2xl font-semibold tracking-tight text-white">
-            To get started, describe what you want to build.
-          </h1>
-          <p className="text-pretty text-sm leading-relaxed text-neutral-500">
-            This is the default page for a fresh v0 project. Open the prompt and
-            tell v0 what to create, or browse the{' '}
-            <a
-              href="https://v0.app/templates"
-              target="_blank"
-              rel="noreferrer"
-              className="text-neutral-300 underline underline-offset-4 hover:text-white"
-            >
-              Community
-            </a>{' '}
-            for inspiration.
-          </p>
-        </div>
-      </div>
-    </main>
+export const dynamic = "force-dynamic"
+
+export default async function PortfolioPage() {
+  const supabase = await createClient()
+  
+  const [
+    { data: projects },
+    { data: certificates },
+    { data: gallery },
+    { data: skills },
+    { data: education },
+    { data: achievements },
+    { data: workshops },
+    { data: contact },
+    { data: resume },
+  ] = await Promise.all([
+    supabase.from("projects").select("*").order("display_order", { ascending: true }),
+    supabase.from("certificates").select("*").order("display_order", { ascending: true }),
+    supabase.from("gallery").select("*").order("display_order", { ascending: true }),
+    supabase.from("skills").select("*").order("display_order", { ascending: true }),
+    supabase.from("education").select("*").order("display_order", { ascending: true }),
+    supabase.from("achievements").select("*").order("display_order", { ascending: true }),
+    supabase.from("workshops").select("*").order("display_order", { ascending: true }),
+    supabase.from("contact").select("*").limit(1).single(),
+    supabase.from("resume").select("*").eq("is_active", true).limit(1).single(),
+  ])
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <HeroSection contact={contact as Contact | null} resume={resume as Resume | null} />
+        <AboutSection />
+        <SkillsSection skills={(skills as Skill[]) || []} />
+        <ProjectsSection projects={(projects as Project[]) || []} />
+        <EducationSection education={(education as Education[]) || []} />
+        <CertificatesSection certificates={(certificates as Certificate[]) || []} />
+        <AchievementsSection achievements={(achievements as Achievement[]) || []} />
+        <WorkshopsSection workshops={(workshops as Workshop[]) || []} />
+        <GallerySection gallery={(gallery as GalleryImage[]) || []} />
+        <ContactSection contact={contact as Contact | null} />
+      </main>
+      <Footer contact={contact as Contact | null} />
+    </div>
   )
 }
