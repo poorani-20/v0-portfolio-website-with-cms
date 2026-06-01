@@ -30,13 +30,13 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border/50" : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-xl font-bold text-foreground">
-            Portfolio
+            <span className="text-primary">POORANI</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -45,13 +45,13 @@ export function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
               </a>
             ))}
             <Link href="/admin">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="border-primary/50 hover:bg-primary/10">
                 Admin
               </Button>
             </Link>
@@ -70,20 +70,20 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border pt-4">
+          <div className="md:hidden mt-4 pb-4 border-t border-border/50 pt-4">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
               <Link href="/admin" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full border-primary/50 hover:bg-primary/10">
                   Admin
                 </Button>
               </Link>

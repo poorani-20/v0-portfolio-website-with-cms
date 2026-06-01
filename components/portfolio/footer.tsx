@@ -9,11 +9,11 @@ export function Footer({ contact }: FooterProps) {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="py-8 px-4 border-t border-border">
+    <footer className="py-8 px-4 border-t border-border/50 bg-card/30">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="h-4 w-4 text-red-500 fill-red-500" /> by Poorani M
+            Made with <Heart className="h-4 w-4 text-primary fill-primary" /> by <span className="text-primary font-medium">POORANI</span>
           </p>
           
           <p className="text-sm text-muted-foreground">
@@ -26,7 +26,7 @@ export function Footer({ contact }: FooterProps) {
                 href={contact.github_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
@@ -37,7 +37,7 @@ export function Footer({ contact }: FooterProps) {
                 href={contact.linkedin_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
@@ -46,7 +46,7 @@ export function Footer({ contact }: FooterProps) {
             {contact?.email && (
               <a
                 href={`mailto:${contact.email}`}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>

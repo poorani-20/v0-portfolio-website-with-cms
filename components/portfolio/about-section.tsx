@@ -1,4 +1,4 @@
-import { User, Code, Briefcase } from "lucide-react"
+import { User, Code, Briefcase, Cpu } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
 export function AboutSection() {
@@ -12,47 +12,62 @@ export function AboutSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="border-0 shadow-sm">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="p-3 bg-primary/10 rounded-full mb-4">
+                <div className="p-3 bg-primary/20 rounded-full mb-4">
                   <User className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Who I Am</h3>
                 <p className="text-muted-foreground text-sm">
-                  A dedicated developer with a passion for creating elegant solutions 
-                  to complex problems. I believe in continuous learning and growth.
+                  A dedicated student with a passion for technology and innovation. 
+                  I believe in continuous learning and hands-on experience.
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm">
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="p-3 bg-primary/10 rounded-full mb-4">
+                <div className="p-3 bg-primary/20 rounded-full mb-4">
                   <Code className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">What I Do</h3>
+                <h3 className="text-lg font-semibold mb-2">Full Stack Dev</h3>
                 <p className="text-muted-foreground text-sm">
-                  I specialize in building modern web applications using cutting-edge 
-                  technologies. From frontend to backend, I love the entire stack.
+                  Building web applications from frontend to backend using 
+                  Java/Spring, Python/Django, and modern frameworks.
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm">
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="p-3 bg-primary/10 rounded-full mb-4">
+                <div className="p-3 bg-primary/20 rounded-full mb-4">
+                  <Cpu className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Embedded Systems</h3>
+                <p className="text-muted-foreground text-sm">
+                  Working with hardware and C programming to create embedded solutions
+                  that bridge software and physical systems.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+            <CardContent className="pt-6">
+              <div className="flex flex-col items-center text-center">
+                <div className="p-3 bg-primary/20 rounded-full mb-4">
                   <Briefcase className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">My Goals</h3>
                 <p className="text-muted-foreground text-sm">
-                  To contribute to impactful projects and collaborate with talented 
-                  individuals while constantly expanding my skill set.
+                  To contribute to impactful projects and grow as a developer 
+                  while building innovative solutions.
                 </p>
               </div>
             </CardContent>
